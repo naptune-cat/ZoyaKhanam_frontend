@@ -1,0 +1,22 @@
+body {
+  font-family: "Times New Roman", Times, serif;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: slategray;
+  padding: 2px;
+}
+#header-text {
+  margin-left: 20px;
+  text-align: left;
+  color: white;
+}
+#profile-picture {
+  margin-right: 20px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid white;
+}
