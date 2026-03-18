@@ -69,3 +69,16 @@ nav a.active-link:active {
   border-bottom: 2px dotted;
   background-color: var(--secondary-color);
 }
+/* footer styling */
+footer {
+  text-align: center;
+  font-size: small;
+  color: var(--secondary-text-color);
+  background-color: var(--primary-color);
+  padding: 4px;
+}
+footer a {
+  font-size: smaller;
+  text-decoration: none;
+  color: var(--secondary-text-color);
+}
