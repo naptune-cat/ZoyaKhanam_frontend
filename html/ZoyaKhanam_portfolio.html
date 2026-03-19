@@ -3,42 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../css/zoyakhanam_styles.css"
+    />
     <title>Portfolio</title>
   </head>
   <body>
     <!-- Header section -->
     <header>
-      <h1>Zoya Khanam</h1>
-      <h2>Software Developer</h2>
-      <img src="ZoyaKhanam_11052003.jpg" alt="Zoya Khanam profile picture" />
+      <div id="header-text">
+        <h1 id="header-name">Zoya Khanam</h1>
+        <h2>Software Developer</h2>
+      </div>
+
+      <img
+        id="profile-picture"
+        src="ZoyaKhanam_11052003.jpg"
+        alt="Zoya Khanam profile picture"
+      />
     </header>
     <hr />
     <!-- Navigation section -->
     <nav>
       <ul>
-        <li><a href="#about">About</a></li>
+        <li><a href="#about" class="active-link highlight">About</a></li>
         <li>
-          <a href="#skills">Skills</a>
+          <a href="#skills" class="active-link highlight">Skills</a>
           <ul>
-            <li><a href="#technical-skills">Technical skills</a></li>
-            <li><a href="#soft-skills">Soft skills</a></li>
+            <li>
+              <a href="#technical-skills" class="active-link sub-list"
+                >Technical skills</a
+              >
+            </li>
+            <li>
+              <a href="#soft-skills" class="active-link sub-list"
+                >Soft skills</a
+              >
+            </li>
           </ul>
         </li>
         <li>
-          <a href="#education">Education</a>
+          <a href="#education" class="active-link highlight">Education</a>
           <ul>
-            <li><a href="#graduation">Graduation</a></li>
             <li>
-              <a href="#higher-secondary-education"
+              <a href="#graduation" class="active-link sub-list">Graduation</a>
+            </li>
+            <li>
+              <a class="active-link sub-list" href="#higher-secondary-education"
                 >Higher Secondary Education</a
               >
             </li>
-            <li><a href="#secondary-education">Secondary Education</a></li>
+            <li>
+              <a class="active-link sub-list" href="#secondary-education"
+                >Secondary Education</a
+              >
+            </li>
           </ul>
         </li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#projects" class="active-link highlight">Projects</a></li>
+        <li>
+          <a href="#experience" class="active-link highlight">Experience</a>
+        </li>
+        <li><a href="#contact" class="active-link highlight">Contact</a></li>
       </ul>
     </nav>
 
@@ -60,8 +88,8 @@
     <section id="skills">
       <h2>Skills</h2>
       <ul>
-        <li type="square">
-          <h3 id="technical-skills">Technical Skills</h3>
+        <li id="technical-skills" type="square">
+          <h3>Technical Skills</h3>
           <ul>
             <li type="disc">C++</li>
             <li type="disc">MySQL</li>
@@ -74,8 +102,8 @@
             <li type="disc">SDLC</li>
           </ul>
         </li>
-        <li type="square">
-          <h3 id="soft-skills">Soft Skills</h3>
+        <li id="soft-skills" type="square">
+          <h3>Soft Skills</h3>
           <ul>
             <li type="disc">Communication</li>
             <li type="disc">Leadership</li>
@@ -86,6 +114,7 @@
       </ul>
     </section>
     <hr />
+
     <!-- Education section -->
 
     <section id="education">
@@ -191,10 +220,23 @@
           <fieldset>
             <legend>Personal Information</legend>
             <label for="name">Name:</label>
-            <input required type="text" id="name" />
+            <input
+              required
+              type="text"
+              id="name"
+              placeholder="Marie Curie"
+              minlength="2"
+              pattern="[a-zA-Z\s]+"
+              title="only alphabets are allowed"
+            />
             <br /><br />
             <label for="email">Email:</label>
-            <input type="email" required id="email" />
+            <input
+              type="email"
+              required
+              id="email"
+              placeholder="marie@gmail.com"
+            />
             <br />
             <br />
             <label for="phone">Phone number:</label>
@@ -203,6 +245,8 @@
               id="phone"
               minlength="10"
               maxlength="10"
+              pattern="[0-9\s]+"
+              title="only numeric digits allowed"
               required
             />
           </fieldset>
@@ -223,8 +267,8 @@
           <br />
           <p>Skills interested in:</p>
           <input type="checkbox" value="Web-development" /> Web development
-          <input type="checkbox" value="App-development" /> App development
-          <input value="data" type="checkbox" /> Data
+          <input type="checkbox" value="App-development" /> Android development
+          <input value="data" type="checkbox" /> Data Science
           <br />
           <br />
           <p id="preferred-contact-method">Preferred contact method:</p>
@@ -238,13 +282,13 @@
     <hr />
     <!-- Footer section -->
     <footer>
-      <p>
-        All rights reserved <br />
-        Zoya Khanam 2026 ©
-      </p>
+      <p>Zoya Khanam 2026 © All rights reserved <br /></p>
+      <p><b>Connect here</b></p>
       <a href="https://www.linkedin.com/in/zoya-khanam-b947a2229/"
         >🔗Linkedin</a
       >
+      <br />
+      <a href="https://github.com/naptune-cat/">🔗Github</a>
     </footer>
   </body>
 </html>
