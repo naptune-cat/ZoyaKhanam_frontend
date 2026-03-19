@@ -106,12 +106,12 @@ td {
   text-align: center;
 }
 tr:nth-child(even) {
-  background-color: #bdbbbb;
+  background-color: rgba(69, 135, 128, 0.5);
 }
 /* ----project section styling---- */
 #project li {
   margin-bottom: 2px;
-  /* transition: var(--secondary-color) 0.3 ease; */
+  transition: var(--secondary-color) 0.3 ease;
 }
 #projects ul {
   margin-bottom: 4px;
@@ -127,6 +127,45 @@ tr:nth-child(even) {
 #projects a:active {
   background-color: var(--primary-color);
   color: white;
+}
+/* contact section sstyle */
+form label {
+  display: block;
+}
+form input,
+form textarea,
+form select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  background-color: rgba(69, 135, 128, 0.5);
+  border: 1px solid #a9a8a8;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+form input[type="checkbox"],
+form input[type="radio"] {
+  width: auto;
+  display: inline-block;
+  margin-right: 5px;
+}
+/* ----button---- */
+button {
+  display: block;
+  margin: auto;
+  background-color: var(--secondary-color);
+  font-size: large;
+  padding: 2px;
+  color: white;
+  width: 150px;
+  border-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: rgb(129, 201, 129);
 }
 
 /* ---footer styling--- */
