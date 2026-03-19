@@ -78,6 +78,7 @@ section {
 }
 /* ---skills section styling--- */
 #skills li {
+  display: block;
   line-height: 1.5;
 }
 #technical-skills {
@@ -87,6 +88,25 @@ section {
 #soft-skills {
   column-count: 2;
   margin-top: 2px;
+}
+/* Education section styling */
+table {
+  border-collapse: collapse;
+  height: 50%;
+  margin: 5px auto;
+  width: 600px;
+  display: flex;
+  position: relative;
+}
+table,
+th,
+td {
+  border: 1px solid var(--secondary-color);
+  padding: 2px;
+  text-align: center;
+}
+tr:nth-child(even) {
+  background-color: #bdbbbb;
 }
 
 /* ---footer styling--- */
