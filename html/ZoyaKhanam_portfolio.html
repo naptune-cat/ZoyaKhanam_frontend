@@ -191,10 +191,23 @@
           <fieldset>
             <legend>Personal Information</legend>
             <label for="name">Name:</label>
-            <input required type="text" id="name" />
+            <input
+              required
+              type="text"
+              id="name"
+              placeholder="Marie Curie"
+              minlength="2"
+              pattern="[a-zA-Z\s]+"
+              title="only alphabets are allowed"
+            />
             <br /><br />
             <label for="email">Email:</label>
-            <input type="email" required id="email" />
+            <input
+              type="email"
+              required
+              id="email"
+              placeholder="marie@gmail.com"
+            />
             <br />
             <br />
             <label for="phone">Phone number:</label>
@@ -203,6 +216,8 @@
               id="phone"
               minlength="10"
               maxlength="10"
+              pattern="[0-9\s]+"
+              title="only numeric digits allowed"
               required
             />
           </fieldset>
