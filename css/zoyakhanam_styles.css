@@ -192,7 +192,7 @@ footer {
   padding: var(--padding);
 }
 footer a {
-  font-size: smaller;
+  font-size: small;
   text-decoration: none;
   color: var(--secondary-text-color);
 }
