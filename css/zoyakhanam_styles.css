@@ -89,7 +89,7 @@ section {
   column-count: 2;
   margin-top: 2px;
 }
-/* Education section styling */
+/* ---Education section styling--- */
 table {
   border-collapse: collapse;
   height: 50%;
@@ -107,6 +107,26 @@ td {
 }
 tr:nth-child(even) {
   background-color: #bdbbbb;
+}
+/* ----project section styling---- */
+#project li {
+  margin-bottom: 2px;
+  /* transition: var(--secondary-color) 0.3 ease; */
+}
+#projects ul {
+  margin-bottom: 4px;
+}
+#projects a {
+  text-decoration: none;
+  font-size: medium;
+  transition: color 0.3s ease;
+}
+#projects a:hover {
+  color: var(--secondary-color);
+}
+#projects a:active {
+  background-color: var(--primary-color);
+  color: white;
 }
 
 /* ---footer styling--- */
