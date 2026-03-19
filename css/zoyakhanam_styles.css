@@ -4,9 +4,9 @@
   --background-color: #f4f3e2;
   --primary-text-color: #000000;
   --secondary-text-color: #f5f5f5;
+  --padding: 4px;
   font-family: "Times New Roman", Times, serif;
   margin: 10px;
-  padding: 2px;
   border: 1px solid black;
 }
 /* ---- header styling ---- */
@@ -50,7 +50,7 @@ nav > ul {
 }
 nav ul {
   list-style: none;
-  padding: 14px;
+  padding: 4px;
 }
 nav a {
   /* for deleting underline from links */
@@ -69,13 +69,20 @@ nav a.active-link:active {
   border-bottom: 2px dotted;
   background-color: var(--secondary-color);
 }
-/* footer styling */
+/* ----section styling---- */
+section {
+  margin: 5px;
+  padding: var(--padding);
+  border: 1px solid var(--secondary-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+/* ---footer styling--- */
 footer {
   text-align: center;
   font-size: small;
   color: var(--secondary-text-color);
   background-color: var(--primary-color);
-  padding: 4px;
+  padding: var(--padding);
 }
 footer a {
   font-size: smaller;
