@@ -63,8 +63,10 @@
           </ul>
         </li>
         <li><a href="#projects" class="active-link highlight">Projects</a></li>
-        <li><a href="#experience" class="active-link highlight">Experience</a></li>
-        <li><a href="#contact" class="active-link highlight ">Contact</a></li>
+        <li>
+          <a href="#experience" class="active-link highlight">Experience</a>
+        </li>
+        <li><a href="#contact" class="active-link highlight">Contact</a></li>
       </ul>
     </nav>
 
@@ -218,10 +220,23 @@
           <fieldset>
             <legend>Personal Information</legend>
             <label for="name">Name:</label>
-            <input required type="text" id="name"  />
+            <input
+              required
+              type="text"
+              id="name"
+              placeholder="Marie Curie"
+              minlength="2"
+              pattern="[a-zA-Z\s]+"
+              title="only alphabets are allowed"
+            />
             <br /><br />
             <label for="email">Email:</label>
-            <input type="email" required id="email" />
+            <input
+              type="email"
+              required
+              id="email"
+              placeholder="marie@gmail.com"
+            />
             <br />
             <br />
             <label for="phone">Phone number:</label>
@@ -230,6 +245,8 @@
               id="phone"
               minlength="10"
               maxlength="10"
+              pattern="[0-9\s]+"
+              title="only numeric digits allowed"
               required
             />
           </fieldset>
@@ -250,8 +267,8 @@
           <br />
           <p>Skills interested in:</p>
           <input type="checkbox" value="Web-development" /> Web development
-          <input type="checkbox" value="App-development" /> App development
-          <input value="data" type="checkbox" /> Data
+          <input type="checkbox" value="App-development" /> Android development
+          <input value="data" type="checkbox" /> Data Science
           <br />
           <br />
           <p id="preferred-contact-method">Preferred contact method:</p>
