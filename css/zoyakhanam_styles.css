@@ -16,6 +16,14 @@ body {
   margin: 10px;
   border: 1px solid black;
 }
+a {
+  text-decoration: none;
+  font-size: medium;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: rgb(180, 58, 58);
+}
 /* ---- header styling ---- */
 header {
   display: flex;
@@ -110,7 +118,7 @@ table {
   margin: 5px auto;
   width: 100%;
   max-width: 600px;
-  display: flex;
+
   position: relative;
 }
 table,
@@ -124,21 +132,11 @@ tr:nth-child(even) {
   background-color: rgba(69, 135, 128, 0.5);
 }
 /* ----project section styling---- */
-#project li {
-  margin-bottom: 2px;
-  transition: var(--secondary-color) 0.3 ease;
-}
+
 #projects ul {
   margin-bottom: 4px;
 }
-#projects a {
-  text-decoration: none;
-  font-size: medium;
-  transition: color 0.3s ease;
-}
-#projects a:hover {
-  color: var(--secondary-color);
-}
+
 #projects a:active {
   background-color: var(--primary-color);
   color: white;
