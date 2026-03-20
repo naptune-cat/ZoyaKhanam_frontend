@@ -14,7 +14,7 @@ const students = [
     name: "Sneha",
     marks: [
       { subject: "Math", score: 95 },
-      { subject: "English", score: 92 },
+      { subject: "English", score: 99 },
       { subject: "Science", score: 94 },
       { subject: "History", score: 90 },
       { subject: "Computer", score: 97 },
@@ -28,7 +28,7 @@ const students = [
       { subject: "English", score: 45 },
       { subject: "Science", score: 28 },
       { subject: "History", score: 35 },
-      { subject: "Computer", score: 40 },
+      { subject: "Computer", score: 99 },
     ],
     attendance: 75,
   },
@@ -37,7 +37,7 @@ const students = [
     marks: [
       { subject: "Math", score: 38 },
       { subject: "English", score: 33 },
-      { subject: "Science", score: 41 },
+      { subject: "Science", score: 98 },
       { subject: "History", score: 29 },
       { subject: "Computer", score: 36 },
     ],
@@ -88,7 +88,7 @@ function subjectWiseHighest(students) {
       //if the subject is never seen or if the current score is greater than the previous value
       if (
         highestMarks[subject.subject] === undefined ||
-        highestMarks[subject.subject] < subject.score
+        highestMarks[subject.subject].marks < subject.score
       )
         // highestMarks is an object of object
         highestMarks[subject.subject] = {
@@ -108,6 +108,30 @@ for (let sub in subjectTopper) {
     `Highest in ${sub} : ${subjectTopper[sub].name} (${subjectTopper[sub].marks})`,
   );
 }
+
+function subjectWiseAverageScore(students) {
+  const subTotal = {};
+  students.forEach((student) => {
+    student.marks.forEach((subject) => {
+      //if there is no entry of a subject
+      if (subTotal[subject.subject] === undefined) {
+        subTotal[subject.subject] = subject.score;
+      } else {
+        subTotal[subject.subject] += subject.score;
+      }
+    });
+  });
+  return subTotal;
+}
+console.log("4. Subject-wise Average Score");
+let subjectTotalAvg = subjectWiseAverageScore(students);
+subjectTotalAvg = subjectTotalAvg;
+let numberOfStudents = students.length;
+for (let sub in subjectTotalAvg) {
+  let avg = subjectTotalAvg[sub] / numberOfStudents;
+  console.log(`Average ${sub} Score: ${avg}`);
+}
+
 
 function getGrade(students) {
   students.forEach((student) => {
