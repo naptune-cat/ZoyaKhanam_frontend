@@ -56,32 +56,61 @@ const students = [
   },
 ];
 
-// ---Logic for calculations---
 function calculateTotalMarks(students) {
-  // this is an array which will store the total marks & name of all the students
-  const totalMarksOfEachStudent = [];
   students.forEach((student) => {
     let total = 0;
     student.marks.forEach((mark) => {
       total += mark.score;
     });
+    student.totalMarks = total;
     console.log(`${student.name} Total Marks: ${total}`);
-    totalMarksOfEachStudent.push({
-      name: student.name,
-      totalMarks: total,
+  });
+}
+
+function calculateAverage(students) {
+  students.forEach((student) => {
+    let avg = student.totalMarks / student.marks.length;
+    student.average = avg;
+    console.log(`${student.name} average: ${student.average}`);
+  });
+}
+
+function getGrade(students) {
+  students.forEach((student) => {
+    let grade = "";
+    let failedSubjects = [];
+    student.marks.forEach((subject) => {
+      if (subject.score < 40) {
+        failedSubjects.push(subject.subject);
+      }
     });
+    student.failedIn = failedSubjects;
+    if (failedSubjects.length > 0) {
+      grade = `fail (failed in ${failedSubjects})`;
+    } else if (student.attendance < 75) {
+      grade = "fail (low attendance)";
+    } else {
+      if (student.average >= 85) {
+        grade = "A";
+      } else if (student.average >= 70) {
+        grade = "B";
+      } else if (student.average >= 50) {
+        grade = "C";
+      } else {
+        grade = "fail";
+      }
+    }
+    student.grade = grade;
+
+    console.log(`${student.name} Grade: ${student.grade}`);
   });
-  return totalMarksOfEachStudent;
 }
 
-function calculateAverage() {
-  totals.forEach((student) => {
-    console.log(`${student.name} Average: ${student.totalMarks / 5}`);
-  });
-}
-
-// ---function calling section---
 console.log("1. Total marks for each student");
-const totals = calculateTotalMarks(students);  //saving the total marks and name of student so that we dont have to calculated total again for avg
+calculateTotalMarks(students);
+
 console.log("2. Average marks for each student");
-calculateAverage(totals);
+calculateAverage(students);
+
+console.log("5. Grade for each student");
+getGrade(students);
