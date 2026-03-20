@@ -55,15 +55,33 @@ const students = [
     attendance: 60,
   },
 ];
+
+// ---Logic for calculations---
 function calculateTotalMarks(students) {
+  // this is an array which will store the total marks & name of all the students
+  const totalMarksOfEachStudent = [];
   students.forEach((student) => {
     let total = 0;
     student.marks.forEach((mark) => {
       total += mark.score;
     });
-    console.log(`${student.name} total marks: ${total}`);
+    console.log(`${student.name} Total Marks: ${total}`);
+    totalMarksOfEachStudent.push({
+      name: student.name,
+      totalMarks: total,
+    });
+  });
+  return totalMarksOfEachStudent;
+}
+
+function calculateAverage() {
+  totals.forEach((student) => {
+    console.log(`${student.name} Average: ${student.totalMarks / 5}`);
   });
 }
 
-console.log("1. Total marks");
-calculateTotalMarks(students);
+// ---function calling section---
+console.log("1. Total marks for each student");
+const totals = calculateTotalMarks(students);  //saving the total marks and name of student so that we dont have to calculated total again for avg
+console.log("2. Average marks for each student");
+calculateAverage(totals);
