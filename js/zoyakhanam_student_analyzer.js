@@ -67,12 +67,46 @@ function calculateTotalMarks(students) {
   });
 }
 
+console.log("1. Total marks for each student");
+calculateTotalMarks(students);
+
 function calculateAverage(students) {
   students.forEach((student) => {
     let avg = student.totalMarks / student.marks.length;
     student.average = avg;
     console.log(`${student.name} average: ${student.average}`);
   });
+}
+
+console.log("2. Average marks for each student");
+calculateAverage(students);
+
+function subjectWiseHighest(students) {
+  const highestMarks = {};
+  students.forEach((student) => {
+    student.marks.forEach((subject) => {
+      //if the subject is never seen or if the current score is greater than the previous value
+      if (
+        highestMarks[subject.subject] === undefined ||
+        highestMarks[subject.subject] < subject.score
+      )
+        // highestMarks is an object of object
+        highestMarks[subject.subject] = {
+          name: student.name,
+          marks: subject.score,
+        };
+    });
+  });
+  return highestMarks;
+}
+console.log("3. Subject-wise Highest Score in the Class");
+const subjectTopper = subjectWiseHighest(students);
+
+//we use for in loop for objects
+for (let sub in subjectTopper) {
+  console.log(
+    `Highest in ${sub} : ${subjectTopper[sub].name} (${subjectTopper[sub].marks})`,
+  );
 }
 
 function getGrade(students) {
@@ -106,11 +140,5 @@ function getGrade(students) {
   });
 }
 
-console.log("1. Total marks for each student");
-calculateTotalMarks(students);
-
-console.log("2. Average marks for each student");
-calculateAverage(students);
-
-console.log("5. Grade for each student");
+console.log("6. Grade for each student");
 getGrade(students);
