@@ -6,8 +6,26 @@
   </head>
   <body>
     <header>Product Inventory Dashboard</header>
+    <!-- control section contains search bar and other filters like category ,price -->
     <section id="control-section">
+      <!-- search bar -->
       <input type="text" id="search-input" placeholder="search here.." />
+      <!-- category filter -->
+      <select name="filter-category" id="category-filter">
+        <option value="">-- filter acc to category --</option>
+        <option value="electronic">Electronics</option>
+        <option value="clothing">Clothing</option>
+        <option value="books">Books</option>
+        <option value="accessories">Accessories</option>
+      </select>
+      <!-- sort -->
+      <select name="sort" id="sort-val">
+        <option value="">--sort--</option>
+        <option value="low-high">Low to High Price</option>
+        <option value="high-low">High to Low Price</option>
+        <option value="a-z">A-Z</option>
+        <option value="z-a">Z-A</option>
+      </select>
     </section>
     <section id="analytics-section">
       <h3>Inventory Dashboard</h3>

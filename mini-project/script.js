@@ -155,5 +155,51 @@ function showAnalytics() {
 inventoryAnalysis(productsList);
 showAnalytics();
 
+//control section logic below---
 
-//control section logic below
+//logic for the search bar
+const searchInput = document.getElementById("search-input");
+searchInput.addEventListener("input", function () {
+  const value = searchInput.value.toLowerCase(); //converting the input into lowercase for ease in searching
+  //filter returns an object with the values
+  const filtered = productsList.filter((product) =>
+    product.name.toLowerCase().includes(value),
+  );
+  renderProducts(filtered);
+  inventoryAnalysis(filtered);
+  showAnalytics();
+});
+
+// category filter---
+const selectedCategory = document.getElementById("category-filter");
+selectedCategory.addEventListener("input", function () {
+  const value = selectedCategory.value;
+
+  const filtered = productsList.filter((product) =>
+    product.category.includes(value),
+  );
+  renderProducts(filtered);
+  inventoryAnalysis(filtered);
+  showAnalytics();
+});
+
+//price wise sort
+const selectedSort = document.getElementById("sort-val");
+selectedSort.addEventListener("change", function () {
+  const value = selectedSort.value;
+  //using spread operator to copy the list
+  let filtered = [...productsList];
+  if (value === "low-high") {
+    filtered.sort((a, b) => a.price - b.price);
+  } else if (value === "high-low") {
+    filtered.sort((a, b) => b.price - a.price);
+  } else if (value === "z-a") {
+    //localeCompare is used to compare two strings for sorting alphabetically
+    filtered.sort((a, b) => b.name.localeCompare(a.name));
+  } else if (value === "a-z") {
+    filtered.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  renderProducts(filtered);
+  inventoryAnalysis(filtered);
+  showAnalytics();
+});
