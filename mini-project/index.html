@@ -9,7 +9,48 @@
     <section id="control-section"></section>
     <section id="analytics-section"></section>
     <section id="product-section"></section>
-    <section id="add-product-form-section"></section>
+    <section id="add-product-form-section">
+      <form>
+        <fieldset>
+          <legend>Add Products</legend>
+          <label for="prod-name">Product name: </label>
+          <input
+            type="text"
+            id="product-name"
+            name="prod-name"
+            required
+            pattern="[A-Za-z\s]+"
+            minlength="3"
+          /><br />
+          <label for="prod-price">Price: </label>
+          <input
+            type="number"
+            required
+            id="product-price"
+            name="prod-price"
+            min="100"
+            max="999999"
+          /><br />
+          <label for="prod-stock">Price: </label>
+          <input
+            type="number"
+            required
+            id="product-stock"
+            name="prod-stock"
+            min="1"
+          /><br />
+          <label for="prod-category">Price: </label>
+          <select name="category" id="product-category" required>
+            <option value="">-- Please select an option --</option>
+            <option value="electronic">Electronics</option>
+            <option value="clothing">Clothing</option>
+            <option value="books">Books</option>
+            <option value="accessories">Accessories</option></select
+          ><br />
+          <button id="add-product-button">Submit</button>
+        </fieldset>
+      </form>
+    </section>
 
     <script src="script.js"></script>
   </body>
