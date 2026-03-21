@@ -51,8 +51,10 @@ calculateTotalMarks(students);
 function calculateAverage(students) {
   students.forEach((student) => {
     let avg = student.totalMarks / student.marks.length;
+    //student.mark,length gives the total number of students present
     student.average = avg;
     console.log(`${student.name} average: ${student.average.toFixed(1)}`);
+    //used toFixed(1) to get 1 digit after the decimal point
   });
 }
 
@@ -68,7 +70,7 @@ function subjectWiseHighest(students) {
         highestMarks[subject.subject] === undefined ||
         highestMarks[subject.subject].marks < subject.score
       )
-        // highestMarks is an object of object
+        // highestMarks is an object containing arr
         highestMarks[subject.subject] = {
           name: student.name,
           marks: subject.score,
@@ -102,21 +104,21 @@ function subjectWiseAverageScore(students) {
   return subTotal;
 }
 console.log("4. Subject-wise Average Score");
-let subjectTotalAvg = subjectWiseAverageScore(students);
-subjectTotalAvg = subjectTotalAvg;
+let subjectTotalAvg = subjectWiseAverageScore(students); //storing the obj returned by our function
 let numberOfStudents = students.length;
+//for output
 for (let sub in subjectTotalAvg) {
   let avg = subjectTotalAvg[sub] / numberOfStudents;
   console.log(`Average ${sub} Score: ${avg.toFixed(1)}`);
 }
 
 function getTopper(students) {
-  let toppers = [];
+  let toppers = []; //using array to store the name and total marks of the toppers
   let maxMark = -1;
   students.forEach((student) => {
     if (student.totalMarks > maxMark) {
       maxMark = student.totalMarks;
-      toppers = [];
+      toppers = []; //emptying out arr because any entry before this will have lesser marks than our current entry
       toppers.push({
         name: student.name,
         marks: student.totalMarks,
@@ -132,22 +134,24 @@ function getTopper(students) {
   return toppers;
 }
 console.log("5. Determine Overall Class Topper");
-const topperStudents = getTopper(students);
+const topperStudents = getTopper(students); //storing the array returned by our fn
 topperStudents.forEach((entry) => {
   console.log(`Class topper : ${entry.name} with ${entry.marks} marks`);
 });
+
+
 function getGrade(students) {
   students.forEach((student) => {
     let grade = "";
-    let failedSubjects = [];
+    let failedSubjects = []; //failedSubject array to store the multiple subjects in which a student failed in
     student.marks.forEach((subject) => {
       if (subject.score < 40) {
         failedSubjects.push(subject.subject);
       }
     });
-    student.failedIn = failedSubjects;
-    if (failedSubjects.length > 0) {
-      grade = `fail (failed in ${failedSubjects})`;
+    student.failedIn = failedSubjects; //we are also updating the students array to store failed subject array for future reference
+    if (failedSubjects.length > 0) { //if the failedSubject arr is not empty means the student failed in atleast one subject
+      grade = `fail (failed in ${failedSubjects})`; //used `` for string interpolation
     } else if (student.attendance < 75) {
       grade = "fail (low attendance)";
     } else {
@@ -161,6 +165,7 @@ function getGrade(students) {
         grade = "fail";
       }
     }
+    //adding the grade to our students array as well
     student.grade = grade;
 
     console.log(`${student.name} Grade: ${student.grade}`);
