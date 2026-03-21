@@ -71,3 +71,29 @@ let productsList = [
     category: "accessories",
   },
 ];
+
+//function for deleting
+function deleteProduct(id) {
+  productsList = productsList.filter((element) => element.id != id);
+  renderProducts(productsList);
+}
+
+//rendering the products
+function renderProducts(list) {
+  //pointing to the product section we will dynamically add products from productsList
+  const container = document.getElementById("product-section");
+  container.innerHTML = "";
+
+  list.forEach((product) => {
+    const div = document.createElement("div");
+    div.innerHTML = `
+        <h3>${product.name}</h3>
+        <p>${product.category}</p>
+        <p>INR ${product.price}</p>
+        <p>${product.stock} left</p>
+        <button onclick="deleteProduct(${product.id})">Delete 🗑️</button>
+        `;
+    container.appendChild(div);
+  });
+}
+renderProducts(productsList);
