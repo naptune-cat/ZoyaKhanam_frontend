@@ -72,6 +72,9 @@ let productsList = [
   },
 ];
 
+//this will store our id
+let count = productsList.length;
+
 //function for deleting
 function deleteProduct(id) {
   productsList = productsList.filter((element) => element.id != id);
@@ -97,3 +100,26 @@ function renderProducts(list) {
   });
 }
 renderProducts(productsList);
+
+// form submit handler
+function addProd(e) {
+  e.preventDefault();
+  const prodName = document.getElementById("product-name").value;
+  const prodStock = document.getElementById("product-stock").value;
+  const prodCategory = document.getElementById("product-category").value;
+  const prodPrice = document.getElementById("product-price").value;
+  const newProduct = {
+    id: ++count,
+    name: prodName,
+    price: prodPrice,
+    stock: prodStock,
+    category: prodCategory,
+  };
+  //adding new product in our main productsList
+  productsList.push(newProduct);
+  //rendering again with updated list
+  renderProducts(productsList);
+
+  //to reset the form
+  e.target.reset();
+}

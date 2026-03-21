@@ -10,7 +10,7 @@
     <section id="analytics-section"></section>
     <section id="product-section"></section>
     <section id="add-product-form-section">
-      <form>
+      <form onsubmit="addProd(event)">
         <fieldset>
           <legend>Add Products</legend>
           <label for="prod-name">Product name: </label>
@@ -31,7 +31,7 @@
             min="100"
             max="999999"
           /><br />
-          <label for="prod-stock">Price: </label>
+          <label for="prod-stock">Stock: </label>
           <input
             type="number"
             required
@@ -39,7 +39,7 @@
             name="prod-stock"
             min="1"
           /><br />
-          <label for="prod-category">Price: </label>
+          <label for="prod-category">category: </label>
           <select name="category" id="product-category" required>
             <option value="">-- Please select an option --</option>
             <option value="electronic">Electronics</option>
@@ -47,7 +47,7 @@
             <option value="books">Books</option>
             <option value="accessories">Accessories</option></select
           ><br />
-          <button id="add-product-button">Submit</button>
+          <button type="submit" id="add-product-button">Submit</button>
         </fieldset>
       </form>
     </section>
