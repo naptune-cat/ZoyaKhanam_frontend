@@ -1,6 +1,6 @@
 const students = [
   {
-    name: "Zoya",
+    name: "Sanjana",
     marks: [
       { subject: "Math", score: 96 },
       { subject: "English", score: 82 },
@@ -20,28 +20,6 @@ const students = [
       { subject: "Computer", score: 97 },
     ],
     attendance: 30,
-  },
-  {
-    name: "Rohit",
-    marks: [
-      { subject: "Math", score: 32 },
-      { subject: "English", score: 45 },
-      { subject: "Science", score: 28 },
-      { subject: "History", score: 35 },
-      { subject: "Computer", score: 99 },
-    ],
-    attendance: 75,
-  },
-  {
-    name: "Neha",
-    marks: [
-      { subject: "Math", score: 38 },
-      { subject: "English", score: 33 },
-      { subject: "Science", score: 98 },
-      { subject: "History", score: 29 },
-      { subject: "Computer", score: 36 },
-    ],
-    attendance: 80,
   },
   {
     name: "Vikas",
@@ -74,7 +52,7 @@ function calculateAverage(students) {
   students.forEach((student) => {
     let avg = student.totalMarks / student.marks.length;
     student.average = avg;
-    console.log(`${student.name} average: ${student.average}`);
+    console.log(`${student.name} average: ${student.average.toFixed(1)}`);
   });
 }
 
@@ -129,10 +107,35 @@ subjectTotalAvg = subjectTotalAvg;
 let numberOfStudents = students.length;
 for (let sub in subjectTotalAvg) {
   let avg = subjectTotalAvg[sub] / numberOfStudents;
-  console.log(`Average ${sub} Score: ${avg}`);
+  console.log(`Average ${sub} Score: ${avg.toFixed(1)}`);
 }
 
-
+function getTopper(students) {
+  let toppers = [];
+  let maxMark = -1;
+  students.forEach((student) => {
+    if (student.totalMarks > maxMark) {
+      maxMark = student.totalMarks;
+      toppers = [];
+      toppers.push({
+        name: student.name,
+        marks: student.totalMarks,
+      });
+    } else if (student.totalMarks === maxMark) {
+      //if we have more than 1 topper
+      toppers.push({
+        name: student.name,
+        marks: student.totalMarks,
+      });
+    }
+  });
+  return toppers;
+}
+console.log("5. Determine Overall Class Topper");
+const topperStudents = getTopper(students);
+topperStudents.forEach((entry) => {
+  console.log(`Class topper : ${entry.name} with ${entry.marks} marks`);
+});
 function getGrade(students) {
   students.forEach((student) => {
     let grade = "";
