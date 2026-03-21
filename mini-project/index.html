@@ -7,8 +7,12 @@
   <body>
     <header>Product Inventory Dashboard</header>
     <section id="control-section"></section>
-    <section id="analytics-section"></section>
-    <section id="product-section"></section>
+    <section id="analytics-section">
+      <h3>Inventory Dashboard</h3>
+    </section>
+    <section id="product-section">
+      <!-- we are adding values here dynamically using JS -->
+    </section>
     <section id="add-product-form-section">
       <form onsubmit="addProd(event)">
         <fieldset>
@@ -37,7 +41,6 @@
             required
             id="product-stock"
             name="prod-stock"
-            min="1"
           /><br />
           <label for="prod-category">category: </label>
           <select name="category" id="product-category" required>

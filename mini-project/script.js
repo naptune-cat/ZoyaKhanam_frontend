@@ -123,3 +123,23 @@ function addProd(e) {
   //to reset the form
   e.target.reset();
 }
+
+//for inventory dashboard
+
+const inventory = {};
+
+function inventoryAnalysis(productsList) {
+  let totalInventoryValue = 0;
+  let totalOutofstock = 0;
+  productsList.forEach((product) => {
+    totalInventoryValue += product.price;
+    if (product.price === 0) {
+      totalOutofstock++;
+    }
+  });
+  inventory = {
+    totalProducts: productsList.length,
+    totalValue: totalInventoryValue,
+    outOfStockCount: totalOutofstock,
+  };
+}
