@@ -1,0 +1,73 @@
+//our product DS
+let productsList = [
+  {
+    id: 1,
+    name: "Laptop",
+    price: 55000,
+    stock: 5,
+    category: "electronics",
+  },
+  {
+    id: 2,
+    name: "Smartphone",
+    price: 25000,
+    stock: 8,
+    category: "electronics",
+  },
+  {
+    id: 3,
+    name: "Headphones",
+    price: 2000,
+    stock: 3,
+    category: "electronics",
+  },
+  {
+    id: 4,
+    name: "T-Shirt",
+    price: 500,
+    stock: 10,
+    category: "clothing",
+  },
+  {
+    id: 5,
+    name: "Jeans",
+    price: 1200,
+    stock: 4,
+    category: "clothing",
+  },
+  {
+    id: 6,
+    name: "Jacket",
+    price: 2500,
+    stock: 0,
+    category: "clothing",
+  },
+  {
+    id: 7,
+    name: "Book - JavaScript Basics",
+    price: 350,
+    stock: 7,
+    category: "books",
+  },
+  {
+    id: 8,
+    name: "Notebook",
+    price: 100,
+    stock: 15,
+    category: "books",
+  },
+  {
+    id: 9,
+    name: "Backpack",
+    price: 800,
+    stock: 6,
+    category: "accessories",
+  },
+  {
+    id: 10,
+    name: "Watch",
+    price: 1500,
+    stock: 2,
+    category: "accessories",
+  },
+];
