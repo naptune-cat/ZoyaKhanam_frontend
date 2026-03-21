@@ -126,20 +126,34 @@ function addProd(e) {
 
 //for inventory dashboard
 
-const inventory = {};
+let inventory = {};
 
-function inventoryAnalysis(productsList) {
+function inventoryAnalysis(prodList) {
   let totalInventoryValue = 0;
   let totalOutofstock = 0;
-  productsList.forEach((product) => {
-    totalInventoryValue += product.price;
-    if (product.price === 0) {
+  prodList.forEach((product) => {
+    totalInventoryValue += product.stock * product.price;
+    if (product.stock === 0) {
       totalOutofstock++;
     }
   });
   inventory = {
-    totalProducts: productsList.length,
+    totalProducts: prodList.length,
     totalValue: totalInventoryValue,
     outOfStockCount: totalOutofstock,
   };
 }
+
+function showAnalytics() {
+  document.getElementById("total-products").textContent =
+    inventory.totalProducts;
+  document.getElementById("total-value").textContent = inventory.totalValue;
+  document.getElementById("out-of-stock").textContent =
+    inventory.outOfStockCount;
+}
+//calling the functions for inventory dashboard
+inventoryAnalysis(productsList);
+showAnalytics();
+
+
+//control section logic below

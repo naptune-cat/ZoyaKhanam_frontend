@@ -6,9 +6,14 @@
   </head>
   <body>
     <header>Product Inventory Dashboard</header>
-    <section id="control-section"></section>
+    <section id="control-section">
+      <input type="text" id="search-input" placeholder="search here.." />
+    </section>
     <section id="analytics-section">
       <h3>Inventory Dashboard</h3>
+      <h3>Total Products: <span id="total-products"></span></h3>
+      <h3>Total Value: ₹<span id="total-value"></span></h3>
+      <h3>Out of Stock: <span id="out-of-stock"></span></h3>
     </section>
     <section id="product-section">
       <!-- we are adding values here dynamically using JS -->
