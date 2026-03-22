@@ -18,7 +18,7 @@
       <!-- search bar -->
       <input type="text" id="search-input" placeholder="search here.." />
       <!-- category filter -->
-      <select name="filter-category" id="category-filter" >
+      <select name="filter-category" id="category-filter">
         <option value="">-- filter acc to category --</option>
         <option value="electronic">Electronics</option>
         <option value="clothing">Clothing</option>
@@ -35,10 +35,21 @@
       </select>
     </section>
     <section id="analytics-section">
-      <h3>Inventory Dashboard</h3>
-      <h3>Total Products: <span id="total-products"></span></h3>
-      <h3>Total Value: ₹<span id="total-value"></span></h3>
-      <h3>Out of Stock: <span id="out-of-stock"></span></h3>
+      <h2>Inventory Dashboard</h2>
+      <div id="analytics-cards">
+        <p class="card">
+          Total Products:
+          <span id="total-products"></span>
+        </p>
+        <p class="card">
+          Total Value:<br />
+          ₹ <span id="total-value"></span>
+        </p>
+        <p class="card">
+          Out of Stock:<br />
+          <span id="out-of-stock"></span>
+        </p>
+      </div>
     </section>
     <section id="product-section">
       <!-- we are adding values here dynamically using JS -->

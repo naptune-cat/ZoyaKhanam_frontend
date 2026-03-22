@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+:root {
+  --primary-color: rgb(208, 234, 236);
+  --secondary-color: rgb(183, 228, 231);
+}
 
 body {
   font-family: "Google sans", sans-serif;
@@ -17,7 +21,7 @@ header {
   margin-bottom: 5px;
   font-weight: lighter;
   text-align: center;
-  background-color: rgb(208, 234, 236);
+  background-color: var(--primary-color);
   padding-bottom: 5px;
 }
 header h1 {
@@ -25,7 +29,7 @@ header h1 {
 }
 section {
   background-color: #f5f5f5;
-  border: 1px solid rgb(208, 234, 236);
+  border: 1px solid var(--primary-color);
   border-radius: 5px;
   margin: 10px;
   padding: 5px;
@@ -46,3 +50,33 @@ section {
   border: 1px solid #ccc;
 }
 
+#analytics-section {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 25px;
+}
+#analytics-cards {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.card {
+  background-color: var(--primary-color);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  flex: 1;
+  box-shadow: 0px 0px 10px 0px #ccc;
+}
+.card:hover {
+  background-color: var(--secondary-color);
+}
+.card span {
+  font-size: 25px;
+  padding: 5px;
+}
