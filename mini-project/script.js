@@ -77,10 +77,19 @@ let count = productsList.length;
 
 //function for deleting
 function deleteProduct(id) {
-  productsList = productsList.filter((element) => element.id != id);
-  renderProducts(productsList);
-  inventoryAnalysis(productsList)
-  showAnalytics();
+  //firstly we will find the index of the product to be deleted
+  let prodIndex = productsList.findIndex((p) => p.id === id);
+  if (prodIndex !== -1) {
+    const prod = productsList[prodIndex];
+    inventory.totalProducts--;
+    inventory.totalValue -= prod.price * prod.stock;
+
+    //splice is used to delete the entry takes input as (startIndex,how many elements to delete starting from start index)
+    productsList.splice(prodIndex, 1);
+    renderProducts(productsList);
+    inventoryAnalysis(productsList);
+    showAnalytics();
+  }
 }
 
 //rendering the products
