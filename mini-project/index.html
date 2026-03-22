@@ -2,16 +2,23 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+      rel="stylesheet"
+    />
     <title>Product Inventory Dashboard</title>
   </head>
   <body>
-    <header>Product Inventory Dashboard</header>
+    <header><h1>Product Inventory Dashboard</h1></header>
     <!-- control section contains search bar and other filters like category ,price -->
     <section id="control-section">
       <!-- search bar -->
       <input type="text" id="search-input" placeholder="search here.." />
       <!-- category filter -->
-      <select name="filter-category" id="category-filter">
+      <select name="filter-category" id="category-filter" >
         <option value="">-- filter acc to category --</option>
         <option value="electronic">Electronics</option>
         <option value="clothing">Clothing</option>
