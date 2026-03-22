@@ -79,6 +79,8 @@ let count = productsList.length;
 function deleteProduct(id) {
   productsList = productsList.filter((element) => element.id != id);
   renderProducts(productsList);
+  inventoryAnalysis(productsList)
+  showAnalytics();
 }
 
 //rendering the products
@@ -119,7 +121,9 @@ function addProd(e) {
   productsList.push(newProduct);
   //rendering again with updated list
   renderProducts(productsList);
-
+  inventoryAnalysis(productsList);
+  showAnalytics();
+  //showing updated dashboard
   //to reset the form
   e.target.reset();
 }
