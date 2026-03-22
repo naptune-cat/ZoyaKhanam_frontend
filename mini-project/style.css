@@ -16,7 +16,7 @@ body {
 }
 
 header {
-  height: 100px;
+  height: auto;
   font-size: larger;
   margin-bottom: 5px;
   font-weight: lighter;
@@ -40,6 +40,7 @@ section {
   gap: 20px;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 #search-input,
@@ -106,8 +107,36 @@ section {
 }
 button {
   padding: 6px 10px;
-  border: none;
+  border: hidden;
   color: black;
-  border-radius: 5px;   
+  border-radius: 6px;
   cursor: pointer;
+}
+button:hover {
+  background-color: rgb(96, 157, 162);
+  color: white;
+  border: 1px solid white;
+  transition: 0.2s;
+}
+
+#add-product-form-section {
+  padding: 20px;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  margin-top: 20px;
+}
+#add-product-form-section input,
+#add-product-form-section select {
+  margin: 5px;
+  border-radius: 6px;
+}
+#add-product-form-section label,
+#add-product-form-section button {
+  margin-left: 10px;
+}
+/* for smaller screens like mobile we will show analytics vertically */
+@media (max-width: 600px) {
+  #analytics-cards {
+    flex-direction: column;
+  }
 }
