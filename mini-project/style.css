@@ -126,6 +126,7 @@ button:hover {
 #add-product-form-section input,
 #add-product-form-section select {
   margin: 5px;
+  padding: 5px;
   border-radius: 6px;
 }
 #add-product-form-section label,

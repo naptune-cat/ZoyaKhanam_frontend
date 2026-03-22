@@ -1,5 +1,76 @@
 //our product DS
-let productsList = [];
+let productsList = [
+  {
+    id: 1,
+    name: "Laptop",
+    price: 55000,
+    stock: 5,
+    category: "electronics",
+  },
+  {
+    id: 2,
+    name: "Smartphone",
+    price: 30000,
+    stock: 10,
+    category: "electronics",
+  },
+  {
+    id: 3,
+    name: "Headphones",
+    price: 2000,
+    stock: 15,
+    category: "electronics",
+  },
+  {
+    id: 4,
+    name: "T-Shirt",
+    price: 800,
+    stock: 20,
+    category: "clothing",
+  },
+  {
+    id: 5,
+    name: "Jeans",
+    price: 1500,
+    stock: 12,
+    category: "clothing",
+  },
+  {
+    id: 6,
+    name: "Jacket",
+    price: 2500,
+    stock: 8,
+    category: "clothing",
+  },
+  {
+    id: 7,
+    name: "JavaScript Book",
+    price: 600,
+    stock: 25,
+    category: "books",
+  },
+  {
+    id: 8,
+    name: "Data Structures Book",
+    price: 750,
+    stock: 18,
+    category: "books",
+  },
+  {
+    id: 9,
+    name: "Backpack",
+    price: 1200,
+    stock: 14,
+    category: "accessories",
+  },
+  {
+    id: 10,
+    name: "Watch",
+    price: 2200,
+    stock: 9,
+    category: "accessories",
+  },
+];
 
 //function to mimic API response
 
@@ -11,11 +82,25 @@ function fetchProducts() {
   );
 }
 
+//for the first time we will initialize with dummy data
+function initializeProducts() {
+  //storing our data from local storage in storedData
+  let storedData = localStorage.getItem("products");
+
+  if (!storedData) {
+    localStorage.setItem("products", JSON.stringify(productsList));
+    console.log("Dummy data added to localStorage");
+  }
+}
+
 //calling the functions to load the data
 document.addEventListener("DOMContentLoaded", async () => {
   //spinner loader
   const loader = document.getElementById("loader");
   loader.style.display = "block";
+  //if our local storage is empty when page loads for the first time below fn will fill it with dummy data
+  initializeProducts();
+
   loadFromLocalStorage();
 
   //calling fetchProducts for some delay
@@ -60,7 +145,6 @@ function editProduct(id) {
   // updating only if user has entered something
   if (newName && newName !== "") {
     prod.name = newName;
-    saveToLocalStorage();
   }
   const newPrice = prompt(
     "Enter new price (leave empty to keep same):",
@@ -68,25 +152,32 @@ function editProduct(id) {
   );
   if (newPrice && newPrice !== "") {
     prod.price = Number(newPrice);
-    saveToLocalStorage();
   }
   const newStock = prompt(
     "Enter new stock (leave empty to keep same):",
     productsList.stock,
   );
 
-  if (newStock && newStock !== "") {
+  if (newStock && !isNaN(newStock) && Number(newStock) >= 0) {
     prod.stock = Number(newStock);
-    saveToLocalStorage();
+  } else {
+    alert("Invalid stock only positive number allowed");
   }
   const newCategory = prompt(
-    "Enter new category (leave empty to keep same):",
+    "Enter new category (leave empty to keep same): Valid categories are electronics, clothing, books, accessories",
     productsList.category,
   );
 
-  if (newCategory && newCategory !== "") {
-    prod.category = newCategory;
+  const validCategories = ["electronics", "clothing", "books", "accessories"];
+
+  if (newCategory !== null && newCategory !== "") {
+    if (validCategories.includes(newCategory.toLowerCase())) {
+      prod.category = newCategory.toLowerCase();
+    } else {
+      alert("Invalid category!");
+    }
   }
+
   saveToLocalStorage();
   renderProducts(productsList);
   inventoryAnalysis(productsList);
