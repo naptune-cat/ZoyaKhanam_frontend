@@ -71,6 +71,13 @@ let productsList = [
     category: "accessories",
   },
 ];
+//calling the functions to load the data
+document.addEventListener("DOMContentLoaded", () => {
+  loadFromLocalStorage();
+  renderProducts(productsList);
+  inventoryAnalysis(productsList);
+  showAnalytics();
+});
 
 //this will store our id
 let count = productsList.length;
@@ -86,6 +93,7 @@ function deleteProduct(id) {
 
     //splice is used to delete the entry takes input as (startIndex,how many elements to delete starting from start index)
     productsList.splice(prodIndex, 1);
+    saveToLocalStorage();
     renderProducts(productsList);
     inventoryAnalysis(productsList);
     showAnalytics();
@@ -110,7 +118,6 @@ function renderProducts(list) {
     container.appendChild(div);
   });
 }
-renderProducts(productsList);
 
 // form submit handler
 function addProd(e) {
@@ -122,12 +129,13 @@ function addProd(e) {
   const newProduct = {
     id: ++count,
     name: prodName,
-    price: prodPrice,
-    stock: prodStock,
+    price: Number(prodPrice),
+    stock: Number(prodStock),
     category: prodCategory,
   };
   //adding new product in our main productsList
   productsList.push(newProduct);
+  saveToLocalStorage(); //saving the updated list to localstorage
   //rendering again with updated list
   renderProducts(productsList);
   inventoryAnalysis(productsList);
@@ -185,7 +193,7 @@ searchInput.addEventListener("input", function () {
 
 // category filter---
 const selectedCategory = document.getElementById("category-filter");
-selectedCategory.addEventListener("input", function () {
+selectedCategory.addEventListener("change", function () {
   const value = selectedCategory.value;
 
   const filtered = productsList.filter((product) =>
@@ -216,3 +224,20 @@ selectedSort.addEventListener("change", function () {
   inventoryAnalysis(filtered);
   showAnalytics();
 });
+
+//setting up localStorage
+
+//to save the data to local Storage
+function saveToLocalStorage() {
+  localStorage.setItem("products", JSON.stringify(productsList));
+}
+
+//to get the data from local storage
+function loadFromLocalStorage() {
+  const data = localStorage.getItem("products");
+
+  //we are overriding the product list with our data which is stored in local st
+  if (data) {
+    productsList = JSON.parse(data);
+  }
+}
