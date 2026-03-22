@@ -1,81 +1,28 @@
 //our product DS
-let productsList = [
-  {
-    id: 1,
-    name: "Laptop",
-    price: 55000,
-    stock: 5,
-    category: "electronics",
-  },
-  {
-    id: 2,
-    name: "Smartphone",
-    price: 25000,
-    stock: 8,
-    category: "electronics",
-  },
-  {
-    id: 3,
-    name: "Headphones",
-    price: 2000,
-    stock: 3,
-    category: "electronics",
-  },
-  {
-    id: 4,
-    name: "T-Shirt",
-    price: 500,
-    stock: 10,
-    category: "clothing",
-  },
-  {
-    id: 5,
-    name: "Jeans",
-    price: 1200,
-    stock: 4,
-    category: "clothing",
-  },
-  {
-    id: 6,
-    name: "Jacket",
-    price: 2500,
-    stock: 0,
-    category: "clothing",
-  },
-  {
-    id: 7,
-    name: "Book - JavaScript Basics",
-    price: 350,
-    stock: 7,
-    category: "books",
-  },
-  {
-    id: 8,
-    name: "Notebook",
-    price: 100,
-    stock: 15,
-    category: "books",
-  },
-  {
-    id: 9,
-    name: "Backpack",
-    price: 800,
-    stock: 6,
-    category: "accessories",
-  },
-  {
-    id: 10,
-    name: "Watch",
-    price: 1500,
-    stock: 2,
-    category: "accessories",
-  },
-];
+let productsList = [];
+
+//function to mimic API response
+
+function fetchProducts() {
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      resolve(productsList);
+    }, 1000),
+  );
+}
+
 //calling the functions to load the data
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  //spinner loader
+  const loader = document.getElementById("loader");
+  loader.style.display = "block";
   loadFromLocalStorage();
-  renderProducts(productsList);
-  inventoryAnalysis(productsList);
+
+  //calling fetchProducts for some delay
+  const data = await fetchProducts();
+  loader.style.display = "none";
+  renderProducts(data);
+  inventoryAnalysis(data);
   showAnalytics();
 });
 
@@ -87,17 +34,63 @@ function deleteProduct(id) {
   //firstly we will find the index of the product to be deleted
   let prodIndex = productsList.findIndex((p) => p.id === id);
   if (prodIndex !== -1) {
-    const prod = productsList[prodIndex];
-    inventory.totalProducts--;
-    inventory.totalValue -= prod.price * prod.stock;
+    if (confirm("Are you sure you want to delete this item?")) {
+      const prod = productsList[prodIndex];
+      inventory.totalProducts--;
+      inventory.totalValue -= prod.price * prod.stock;
 
-    //splice is used to delete the entry takes input as (startIndex,how many elements to delete starting from start index)
-    productsList.splice(prodIndex, 1);
-    saveToLocalStorage();
-    renderProducts(productsList);
-    inventoryAnalysis(productsList);
-    showAnalytics();
+      //splice is used to delete the entry takes input as (startIndex,how many elements to delete starting from start index)
+      productsList.splice(prodIndex, 1);
+      saveToLocalStorage();
+      renderProducts(productsList);
+      inventoryAnalysis(productsList);
+      showAnalytics();
+    }
   }
+}
+
+//Edit product functionality
+
+function editProduct(id) {
+  let prod = productsList.find((p) => p.id === id);
+  const newName = prompt(
+    "Enter new name (leave empty to keep same):",
+    productsList.name,
+  );
+  // updating only if user has entered something
+  if (newName && newName !== "") {
+    prod.name = newName;
+    saveToLocalStorage();
+  }
+  const newPrice = prompt(
+    "Enter new price (leave empty to keep same):",
+    productsList.price,
+  );
+  if (newPrice && newPrice !== "") {
+    prod.price = Number(newPrice);
+    saveToLocalStorage();
+  }
+  const newStock = prompt(
+    "Enter new stock (leave empty to keep same):",
+    productsList.stock,
+  );
+
+  if (newStock && newStock !== "") {
+    prod.stock = Number(newStock);
+    saveToLocalStorage();
+  }
+  const newCategory = prompt(
+    "Enter new category (leave empty to keep same):",
+    productsList.category,
+  );
+
+  if (newCategory && newCategory !== "") {
+    prod.category = newCategory;
+  }
+  saveToLocalStorage();
+  renderProducts(productsList);
+  inventoryAnalysis(productsList);
+  showAnalytics();
 }
 
 //rendering the products
@@ -105,7 +98,11 @@ function renderProducts(list) {
   //pointing to the product section we will dynamically add products from productsList
   const container = document.getElementById("product-section");
   container.innerHTML = "";
-
+  if (list.length === 0) {
+    const div = document.createElement("div");
+    div.innerHTML = `<p >Inventory Empty- No products Available</p>`;
+    container.appendChild(div);
+  }
   list.forEach((product) => {
     const div = document.createElement("div");
     div.innerHTML = `
@@ -114,6 +111,7 @@ function renderProducts(list) {
         <p>INR ${product.price}</p>
         <p>${product.stock} left</p>
         <button onclick="deleteProduct(${product.id})">Delete 🗑️</button>
+        <button onclick="editProduct(${product.id})">Edit 📝</button>
         `;
     container.appendChild(div);
   });
