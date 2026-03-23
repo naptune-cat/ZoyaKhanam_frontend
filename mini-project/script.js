@@ -197,13 +197,13 @@ function renderProducts(list) {
   list.forEach((product) => {
     const div = document.createElement("div");
     div.innerHTML = `
-        <h3>${product.name}</h3>
-        <p>${product.category}</p>
-        <p>INR ${product.price}</p>
-        <p>${product.stock} left</p>
-        <button onclick="deleteProduct(${product.id})">Delete 🗑️</button>
-        <button onclick="editProduct(${product.id})">Edit 📝</button>
-        `;
+          <h3>${product.name}</h3>
+          <p>${product.category}</p>
+          <p>INR ${product.price}</p>
+          <p>${product.stock} left</p>
+          <button onclick="deleteProduct(${product.id})">Delete 🗑️</button>
+          <button onclick="editProduct(${product.id})">Edit 📝</button>
+          `;
     container.appendChild(div);
   });
 }
@@ -313,6 +313,26 @@ selectedSort.addEventListener("change", function () {
   inventoryAnalysis(filtered);
   showAnalytics();
 });
+
+//low stock filter
+let isButtonActive = false;
+function showLowStockProd() {
+  let btn = document.getElementById("low-stock-button");
+  if (isButtonActive === false) {
+    let filtered = productsList.filter((product) => product.stock < 5);
+    renderProducts(filtered);
+    inventoryAnalysis(filtered);
+    showAnalytics();
+    isButtonActive = true;
+    btn.innerText = "Show All Products";
+  } else {
+    renderProducts(productsList);
+    inventoryAnalysis(productsList);
+    showAnalytics();
+    isButtonActive = false;
+    btn.innerText = "Low Stock Products";
+  }
+}
 
 //setting up localStorage
 

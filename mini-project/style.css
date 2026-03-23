@@ -42,6 +42,11 @@ section {
   justify-content: center;
   flex-wrap: wrap;
 }
+#low-stock-button {
+  border: 1px solid rgb(152, 148, 148);
+  padding: 8px;
+  border-radius: 5px;
+}
 
 #search-input,
 #category-filter,

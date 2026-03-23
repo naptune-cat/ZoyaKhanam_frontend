@@ -27,18 +27,21 @@
       </select>
       <!-- sort -->
       <select name="sort" id="sort-val">
-        <option value="">--sort--</option>
+        <option value="">default</option>
         <option value="low-high">Low to High Price</option>
         <option value="high-low">High to Low Price</option>
         <option value="a-z">A-Z</option>
         <option value="z-a">Z-A</option>
       </select>
+      <button id="low-stock-button" onclick="showLowStockProd()">
+        Low Stock Products
+      </button>
     </section>
     <section id="analytics-section">
       <h2>Inventory Dashboard</h2>
       <div id="analytics-cards">
         <p class="card">
-          Total Products:
+          Total&nbsp;Products:
           <span id="total-products"></span>
         </p>
         <p class="card">
@@ -82,6 +85,7 @@
           <input
             type="number"
             required
+            min="0"
             id="product-stock"
             name="prod-stock"
           /><br />
