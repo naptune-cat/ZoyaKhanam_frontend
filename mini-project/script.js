@@ -11,7 +11,7 @@ let productsList = [
     id: 2,
     name: "Smartphone",
     price: 30000,
-    stock: 10,
+    stock: 2,
     category: "electronics",
   },
   {
@@ -32,7 +32,7 @@ let productsList = [
     id: 5,
     name: "Jeans",
     price: 1500,
-    stock: 12,
+    stock: 0,
     category: "clothing",
   },
   {
@@ -46,7 +46,7 @@ let productsList = [
     id: 7,
     name: "JavaScript Book",
     price: 600,
-    stock: 25,
+    stock: 4,
     category: "books",
   },
   {
@@ -201,8 +201,8 @@ function renderProducts(list) {
           <p>${product.category}</p>
           <p>INR ${product.price}</p>
           <p>${product.stock} left</p>
-          <button onclick="deleteProduct(${product.id})">Delete 🗑️</button>
-          <button onclick="editProduct(${product.id})">Edit 📝</button>
+          <button onclick="deleteProduct(${product.id})" id="delete">Delete 🗑️</button>
+          <button onclick="editProduct(${product.id})" id="edit">Edit 📝</button>
           `;
     container.appendChild(div);
   });

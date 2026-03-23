@@ -88,8 +88,9 @@ section {
 }
 #product-section {
   display: grid;
-  /* grid template is used to make responsive layout  */
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  position: relative;
+  justify-items: center;
 }
 #product-section div {
   background: #e7e9e9;
@@ -123,10 +124,12 @@ button:hover {
 }
 
 #add-product-form-section {
-  padding: 20px;
-  background-color: var(--primary-color);
+  padding: 40px;
+  background-color: #f5f5f5;
   border-radius: 10px;
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 #add-product-form-section input,
 #add-product-form-section select {
@@ -134,19 +137,33 @@ button:hover {
   padding: 5px;
   border-radius: 6px;
 }
-#add-product-form-section label,
+#add-product-form-section label {
+  margin-left: 20px;
+}
 #add-product-form-section button {
-  margin-left: 10px;
+  display: block;
+  width: 40%;
+  margin: 15px auto;
+}
+#add-product-form-section form {
+  background-color: var(--primary-color);
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 500px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
 }
 /* spinner loader */
 
 .loader {
   width: 50px;
   padding: 8px;
-  margin-left: 50%;
   aspect-ratio: 1;
   border-radius: 50%;
   background: #25b09b;
+  display: block;
+  margin: 40px auto;
+  justify-self: center;
+  grid-column: 1 / -1;
   --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
   -webkit-mask: var(--_m);
   mask: var(--_m);
@@ -159,9 +176,23 @@ button:hover {
     transform: rotate(1turn);
   }
 }
+#product-section.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
 /* for smaller screens like mobile we will show analytics vertically */
 @media (max-width: 600px) {
   #analytics-cards {
     flex-direction: column;
   }
+}
+
+/* changing color of edit and delete btns */
+#delete {
+  background-color: rgb(228, 141, 141);
+}
+#edit {
+  background-color: #76af75;
 }
