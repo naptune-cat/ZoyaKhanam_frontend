@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Product Inventory Dashboard</title>
+  </head>
+  <body>
+    <header><h1>Product Inventory Dashboard</h1></header>
+    <!-- control section contains search bar and other filters like category ,price -->
+    <section id="control-section">
+      <!-- search bar -->
+      <input type="text" id="search-input" placeholder="search here.." />
+      <!-- category filter -->
+      <select name="filter-category" id="category-filter">
+        <option value="">-- filter acc to category --</option>
+        <option value="electronic">Electronics</option>
+        <option value="clothing">Clothing</option>
+        <option value="books">Books</option>
+        <option value="accessories">Accessories</option>
+      </select>
+      <!-- sort -->
+      <select name="sort" id="sort-val">
+        <option value="">default</option>
+        <option value="low-high">Low to High Price</option>
+        <option value="high-low">High to Low Price</option>
+        <option value="a-z">A-Z</option>
+        <option value="z-a">Z-A</option>
+      </select>
+      <button id="low-stock-button" onclick="showLowStockProd()">
+        Low Stock Products
+      </button>
+    </section>
+    <section id="analytics-section">
+      <h2>Inventory Dashboard</h2>
+      <div id="analytics-cards">
+        <p class="card">
+          Total&nbsp;Products:
+          <span id="total-products"></span>
+        </p>
+        <p class="card">
+          Total Value:<br />
+          ₹ <span id="total-value"></span>
+        </p>
+        <p class="card">
+          Out of Stock:<br />
+          <span id="out-of-stock"></span>
+        </p>
+      </div>
+    </section>
+    <section id="product-section">
+      <p class="loader" id="loader"></p>
+      <!-- we are adding values here dynamically using JS -->
+    </section>
+    <section id="add-product-form-section">
+      <form onsubmit="addProd(event)">
+        <fieldset>
+          <legend>Add Products</legend>
+          <label for="prod-name">Product name: </label>
+          <input
+            type="text"
+            id="product-name"
+            name="prod-name"
+            required
+            pattern="[A-Za-z0-9\s]+"
+            minlength="3"
+            placeholder="tablet"
+          /><br />
+          <label for="prod-price">Price: </label>
+          <input
+            type="number"
+            required
+            id="product-price"
+            name="prod-price"
+            min="100"
+            max="999999"
+          /><br />
+          <label for="prod-stock">Stock: </label>
+          <input
+            type="number"
+            required
+            min="0"
+            id="product-stock"
+            name="prod-stock"
+          /><br />
+          <label for="prod-category">category: </label>
+          <select name="category" id="product-category" required>
+            <option value="">-- Please select an option --</option>
+            <option value="electronic">Electronics</option>
+            <option value="clothing">Clothing</option>
+            <option value="books">Books</option>
+            <option value="accessories">Accessories</option></select
+          ><br />
+          <button type="submit" id="add-product-button">Submit</button>
+        </fieldset>
+      </form>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
