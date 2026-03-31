@@ -6,14 +6,16 @@
     <title>Portfolio</title>
   </head>
   <body>
-    <!-- Header section -->
+    <!-- =====Header section====== -->
+    <!-- Using semantic header tag to clearly separate profile information from the rest of the page -->
     <header>
       <h1>Zoya Khanam</h1>
       <h2>Software Developer</h2>
       <img src="ZoyaKhanam_11052003.jpg" alt="Zoya Khanam profile picture" />
     </header>
     <hr />
-    <!-- Navigation section -->
+    <!-- =====Navigation section===== -->
+    <!-- I am using nested navigation list to showcase sub list in skills and education list it makes our navigation section look more organized  -->
     <nav>
       <ul>
         <li><a href="#about">About</a></li>
@@ -43,7 +45,9 @@
     </nav>
 
     <hr />
-    <!-- About section -->
+    <!-- =====About section===== -->
+    <!-- using semantic sections to give structural meaning to our web content -->
+    <!-- section for showcasing the introduction of candidate -->
     <section id="about">
       <h2>About</h2>
       <p>
@@ -56,7 +60,8 @@
       </p>
     </section>
     <hr />
-    <!-- skills section -->
+    <!-- =====skills section===== -->
+    <!-- used separate lists to distinguish technical skills from soft skills -->
     <section id="skills">
       <h2>Skills</h2>
       <ul>
@@ -86,8 +91,8 @@
       </ul>
     </section>
     <hr />
-    <!-- Education section -->
-
+    <!-- =====Education section===== -->
+    <!-- used table for educational details because it looks more organized and easily readable  -->
     <section id="education">
       <h2>Education</h2>
       <table border="1">
@@ -122,11 +127,13 @@
       </table>
     </section>
     <hr />
-    <!-- Project section -->
+    <!-- =====Project section===== -->
+
     <section id="projects">
       <h2>Projects</h2>
       <ol>
         <li type="i">
+          <!-- Article tag is used for each project because every project is an independent piece of content -->
           <article>
             <h3>Bookify</h3>
             <p>
@@ -150,13 +157,14 @@
               pets in need of homes. It allows users to browse available pets
               and share pet details to encourage responsible adoption.<br />
             </p>
-            <h5>I'm still working on it.</h5>
+            <p>I'm still working on it.</p>
           </article>
         </li>
       </ol>
     </section>
     <hr />
-    <!-- Expeience Section -->
+    <!-- =====Expeience Section===== -->
+    <!-- Multiple article tags are used to separate each work experience entry clearly -->
     <section id="experience">
       <h2>Experience</h2>
       <article>
@@ -183,7 +191,8 @@
       </article>
     </section>
     <hr />
-    <!-- Contact section -->
+    <!-- =====Contact section===== -->
+    <!-- used fieldset and legend to group related form fields for better readability -->
     <section id="contact">
       <h2>Contact</h2>
       <fieldset>
@@ -222,8 +231,9 @@
             />
           </fieldset>
           <br />
-          <p>Reason for contact:</p>
-          <select id="reason-for-contact">
+          <!-- used labels to connect with inputs to make the form more accessible and user friendly -->
+          <label for="contact-reason">Reason for contact:</label>
+          <select id="contact-reason" name="contact-reason">
             <option>Hiring</option>
             <option>Collaboration</option>
             <option>Query</option>
@@ -232,26 +242,35 @@
           <br />
           <br />
           <fieldset>
-            <legend>Message</legend>
+            <label for="message">Message:</label>
             <textarea id="message" rows="5" cols="50"></textarea>
           </fieldset>
           <br />
           <p>Skills interested in:</p>
-          <input type="checkbox" value="Web-development" /> Web development
-          <input type="checkbox" value="App-development" /> App development
-          <input value="data" type="checkbox" /> Data
+          <input type="checkbox" id="web-development" value="Web-development" />
+          <label for="web-development">Web development</label>
+          <input
+            type="checkbox"
+            id="application-development"
+            value="App-development"
+          />
+          <label for="application-development">Application development</label>
+          <input value="data" id="data" type="checkbox" />
+          <label for="data">Data</label>
           <br />
           <br />
           <p id="preferred-contact-method">Preferred contact method:</p>
-          <input name="contact-method" type="radio" />Email
-          <input name="contact-method" type="radio" />Phone <br /><br />
-          <button>Submit</button>
+          <input id="contact-email" name="contact-method" type="radio" />
+          <label for="contact-email">Email</label>
+          <input id="contact-phone" name="contact-method" type="radio" />
+          <label for="contact-phone">Phone</label>
         </form>
       </fieldset>
     </section>
     <br />
     <hr />
-    <!-- Footer section -->
+    <!-- =====Footer section===== -->
+    <!-- Footer contains copyright and external profile links -->
     <footer>
       <p>
         All rights reserved <br />
