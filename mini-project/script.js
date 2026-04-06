@@ -138,34 +138,26 @@ function deleteProduct(id) {
 
 function editProduct(id) {
   let prod = productsList.find((p) => p.id === id);
-  const newName = prompt(
-    "Enter new name (leave empty to keep same):",
-    productsList.name,
-  );
+  const newName = prompt("Enter new name:", prod.name);
   // updating only if user has entered something
   if (newName && newName !== "") {
     prod.name = newName;
   }
-  const newPrice = prompt(
-    "Enter new price (leave empty to keep same):",
-    productsList.price,
-  );
+  const newPrice = prompt("Enter new price:", prod.price);
   if (newPrice && newPrice !== "") {
     prod.price = Number(newPrice);
   }
-  const newStock = prompt(
-    "Enter new stock (leave empty to keep same):",
-    productsList.stock,
-  );
+  const newStock = prompt("Enter new stock:", prod.stock);
 
   if (newStock && !isNaN(newStock) && Number(newStock) >= 0) {
     prod.stock = Number(newStock);
   } else {
     alert("Invalid stock only positive number allowed");
+    return;
   }
   const newCategory = prompt(
     "Enter new category (leave empty to keep same): Valid categories are electronics, clothing, books, accessories",
-    productsList.category,
+    prod.category,
   );
 
   const validCategories = ["electronics", "clothing", "books", "accessories"];
@@ -175,6 +167,7 @@ function editProduct(id) {
       prod.category = newCategory.toLowerCase();
     } else {
       alert("Invalid category!");
+      return;
     }
   }
 
@@ -267,71 +260,80 @@ showAnalytics();
 
 //control section logic below---
 
+function applyFilters() {
+  // making temporary arr to filter
+  let filtered = [...productsList];
+
+  const searchInput = document
+    .getElementById("search-input")
+    .value.toLowerCase();
+  const selectedCategory = document.getElementById("category-filter").value;
+  const selectedSort = document.getElementById("sort-val").value;
+  //search bar
+  if (searchInput) {
+    filtered = filtered.filter((product) =>
+      product.name.toLowerCase().includes(searchInput),
+    );
+  }
+  // category sort
+  if (selectedCategory !== "all") {
+    filtered = filtered.filter((product) =>
+      product.category.includes(selectedCategory),
+    );
+  }
+  // sort
+  if (selectedSort) {
+    if (selectedSort === "low-high") {
+      filtered.sort((a, b) => a.price - b.price);
+    } else if (selectedSort === "high-low") {
+      filtered.sort((a, b) => b.price - a.price);
+    } else if (selectedSort === "z-a") {
+      //localeCompare is used to compare two strings for sorting alphabetically
+      filtered.sort((a, b) => b.name.localeCompare(a.name));
+    } else if (selectedSort === "a-z") {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    }
+  }
+
+  if (isButtonActive) {
+    filtered = filtered.filter((product) => product.stock < 5);
+  }
+  renderProducts(filtered);
+  inventoryAnalysis(productsList);
+  showAnalytics();
+}
+
 //logic for the search bar
 const searchInput = document.getElementById("search-input");
 searchInput.addEventListener("input", function () {
-  const value = searchInput.value.toLowerCase(); //converting the input into lowercase for ease in searching
-  //filter returns an object with the values
-  const filtered = productsList.filter((product) =>
-    product.name.toLowerCase().includes(value),
-  );
-  renderProducts(filtered);
-  inventoryAnalysis(filtered);
-  showAnalytics();
+  applyFilters();
 });
 
 // category filter---
 const selectedCategory = document.getElementById("category-filter");
 selectedCategory.addEventListener("change", function () {
-  const value = selectedCategory.value;
-
-  const filtered = productsList.filter((product) =>
-    product.category.includes(value),
-  );
-  renderProducts(filtered);
-  inventoryAnalysis(filtered);
-  showAnalytics();
+  applyFilters();
 });
 
 //price wise sort
 const selectedSort = document.getElementById("sort-val");
 selectedSort.addEventListener("change", function () {
-  const value = selectedSort.value;
-  //using spread operator to copy the list
-  let filtered = [...productsList];
-  if (value === "low-high") {
-    filtered.sort((a, b) => a.price - b.price);
-  } else if (value === "high-low") {
-    filtered.sort((a, b) => b.price - a.price);
-  } else if (value === "z-a") {
-    //localeCompare is used to compare two strings for sorting alphabetically
-    filtered.sort((a, b) => b.name.localeCompare(a.name));
-  } else if (value === "a-z") {
-    filtered.sort((a, b) => a.name.localeCompare(b.name));
-  }
-  renderProducts(filtered);
-  inventoryAnalysis(filtered);
-  showAnalytics();
+  applyFilters();
 });
 
 //low stock filter
 let isButtonActive = false;
 function showLowStockProd() {
-  let btn = document.getElementById("low-stock-button");
-  if (isButtonActive === false) {
-    let filtered = productsList.filter((product) => product.stock < 5);
-    renderProducts(filtered);
-    inventoryAnalysis(filtered);
-    showAnalytics();
-    isButtonActive = true;
+  const btn = document.getElementById("low-stock-button");
+
+  isButtonActive = !isButtonActive;
+
+  if (isButtonActive) {
     btn.innerText = "Show All Products";
   } else {
-    renderProducts(productsList);
-    inventoryAnalysis(productsList);
-    showAnalytics();
-    isButtonActive = false;
     btn.innerText = "Low Stock Products";
   }
+  applyFilters();
 }
 
 //setting up localStorage
