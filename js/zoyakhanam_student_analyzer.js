@@ -48,18 +48,20 @@ function calculateTotalMarks(students) {
 console.log("1. Total marks for each student");
 calculateTotalMarks(students);
 
-function calculateAverage(students) {
-  students.forEach((student) => {
-    let avg = student.totalMarks / student.marks.length;
-    //student.mark,length gives the total number of students present
-    student.average = avg;
-    console.log(`${student.name} average: ${student.average.toFixed(1)}`);
-    //used toFixed(1) to get 1 digit after the decimal point
+function calculateAverage(student) {
+  let total = 0;
+  student.marks.forEach((mark) => {
+    total += mark.score;
   });
+  return total / student.marks.length;
 }
-
+// calling fn
 console.log("2. Average marks for each student");
-calculateAverage(students);
+students.forEach((student) => {
+  let avg = calculateAverage(student);
+  student.average = avg;
+  console.log(`${student.name} Average Marks: ${avg}`);
+})
 
 function subjectWiseHighest(students) {
   const highestMarks = {};
@@ -142,10 +144,11 @@ topperStudents.forEach((entry) => {
 
 function getGrade(students) {
   students.forEach((student) => {
+    let avg = calculateAverage(student);
     let grade = "";
     let failedSubjects = []; //failedSubject array to store the multiple subjects in which a student failed in
     student.marks.forEach((subject) => {
-      if (subject.score < 40) {
+      if (subject.score <= 40) {
         failedSubjects.push(subject.subject);
       }
     });
@@ -155,11 +158,11 @@ function getGrade(students) {
     } else if (student.attendance < 75) {
       grade = "fail (low attendance)";
     } else {
-      if (student.average >= 85) {
+      if (avg >= 85) {
         grade = "A";
-      } else if (student.average >= 70) {
+      } else if (avg >= 70) {
         grade = "B";
-      } else if (student.average >= 50) {
+      } else if (avg >= 50) {
         grade = "C";
       } else {
         grade = "fail";
